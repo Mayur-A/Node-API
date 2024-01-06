@@ -13,6 +13,11 @@ app.get("/client/getclientlist", function (req, res) {
   res.status(200).send(getPaginatedClients());
 });
 
+app.post("/client/addClient", function (req, res) {
+  console.log("/addClient");
+  res.status(201).send({ message: "Client Added Successfully" });
+});
+
 //server port
 app.listen(5001, () => {
   console.log("Server started at 5001");
