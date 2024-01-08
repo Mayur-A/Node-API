@@ -6,6 +6,8 @@ const getPaginatedClients = require("./data/getPaginatedClients.js");
 const getClientById = require("./data/getClientById.js");
 const getPaginatedProjects = require("./data/getPaginatedProjects.js");
 const getProjectById = require("./data/getProjectById.js");
+const getProjects = require("./data/getProjects.js");
+const getProjectByClientId = require("./data/getProjectByClientId.js");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -29,6 +31,12 @@ app.post("/client/addClient", function (req, res) {
 app.post("/client/deleteClient/:id", function (req, res) {
   console.log("/deleteClient");
   res.status(200).send({ id: 1 });
+});
+
+app.get("/project/getProjects", (req, res) => {
+  console.log("/getProjects");
+  res.status(200).send(getProjects());
+});
 app.get("/project/getprojectlist", function (req, res) {
   console.log("/getprojectlist");
   res.status(200).send(getPaginatedProjects());
@@ -37,6 +45,11 @@ app.get("/project/getprojectlist", function (req, res) {
 app.get("/project/getprojectbyid/", function (req, res) {
   console.log("/getProjectById");
   res.status(200).send(getProjectById());
+});
+
+app.get("/project/getprojectbyclientid/:id", (req, res) => {
+  console.log("/getProjectByClientId");
+  res.status(200).send(getProjectByClientId());
 });
 //server port
 app.listen(5001, () => {
