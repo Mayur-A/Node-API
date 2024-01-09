@@ -8,11 +8,19 @@ const getPaginatedProjects = require("./data/getPaginatedProjects.js");
 const getProjectById = require("./data/getProjectById.js");
 const getProjects = require("./data/getProjects.js");
 const getProjectByClientId = require("./data/getProjectByClientId.js");
+const getClients = require("./data/getClients.js");
+const addProject = require("./data/addProject.js");
+const deleteProject = require("./data/deleteProject.js");
+const updateProject = require("./data/updateProject.js");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({ origin: true }));
 
+app.get("/client/getclients", (req, res) => {
+  console.log("/getClients");
+  res.status(200).send(getClients());
+});
 app.get("/client/getclientlist", function (req, res) {
   console.log("/getclientlist");
   res.status(200).send(getPaginatedClients());
@@ -50,6 +58,21 @@ app.get("/project/getprojectbyid/", function (req, res) {
 app.get("/project/getprojectbyclientid/:id", (req, res) => {
   console.log("/getProjectByClientId");
   res.status(200).send(getProjectByClientId());
+});
+
+app.post("/project/addproject", (req, res) => {
+  console.log("/addProject");
+  res.status(200).send(addProject());
+});
+
+app.post("/project/updateproject/:id", (req, res) => {
+  console.log("/updateProject");
+  res.status(200).send(updateProject());
+});
+
+app.post("/project/deleteproject/:id", (req, res) => {
+  console.log("/deleteProject");
+  res.status(200).send(deleteProject());
 });
 //server port
 app.listen(5001, () => {
